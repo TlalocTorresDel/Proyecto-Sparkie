@@ -1,0 +1,11 @@
+#Dependencias base que están en el documento pdf del profe de instalar PySpark
+numpy
+pandas
+plotly
+pyspark
+pyspark[sql]
+pyspark[pandas_on_spark]
+
+#Más cositas que no están en el documento que nos pasó de instalar_PySpark
+nltk==3.8.1
+jupyter==1.0.0

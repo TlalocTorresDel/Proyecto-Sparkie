@@ -1,0 +1,34 @@
+# Entorno virtual
+venv/
+pyspark_env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Datos procesados (NO subir, son archivos generados)
+data/processed/*.parquet
+data/processed/*.csv
+data/processed/*.pickle
+
+# Spark
+metastore_db/
+spark-warehouse/
+derby.log
+*.log
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# Sistema
+.DS_Store
+Thumbs.db
