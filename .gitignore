@@ -34,3 +34,4 @@ derby.log
 Thumbs.db
 data/processed/*
 data/processed/*
+notebooks/data/
