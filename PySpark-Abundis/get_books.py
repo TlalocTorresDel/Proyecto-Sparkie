@@ -1,23 +1,19 @@
 import re
 import requests
-
 from bs4 import BeautifulSoup
 from concurrent.futures import ThreadPoolExecutor
+import os
 
 def get_links(n: int | list[int] = -1) -> tuple[ list[str], list[str] ]:
     """Gets the urls for books in the Gutenberg project with numbers `n`.
-
     The books are in txt format under the section frequently downloaded in:
         https://www.gutenberg.org/browse/scores/top.
-
     The numbers `n` must correspond to those on this list (starting with one).
-
     Parameters
     ----------
     n : int | list[int], optional
         An integer or list of integers with the desired book numbers. Choose -1
         (default) if all books are desired.
-
     Returns
     -------
     links : list[str]
@@ -31,10 +27,8 @@ def get_links(n: int | list[int] = -1) -> tuple[ list[str], list[str] ]:
     url = "https://www.gutenberg.org/browse/scores/top"
     try:
         response = requests.get(url)
-
         # Parse contents with BeautifulSoup
         parser = BeautifulSoup(response.text, 'html.parser')
-
         # Get links of books
         ordered_list = parser.find('ol')  # get first ordered list
         list_items = ordered_list.find_all('li')  # list items inside
@@ -42,7 +36,6 @@ def get_links(n: int | list[int] = -1) -> tuple[ list[str], list[str] ]:
             list_filtered = [list_items[i-1] for i in list(n)]
         else:
             list_filtered = list_items
-
         prefix = "https://www.gutenberg.org"
         suffix = ".txt.utf-8"
         links, titles = [], []
@@ -55,7 +48,6 @@ def get_links(n: int | list[int] = -1) -> tuple[ list[str], list[str] ]:
             title += r'.txt'  # add file extension
             titles.append(title)
         return links, titles
-
     except requests.exceptions.RequestException as e:
         print("wrong url for Gutenberg project")
 
@@ -75,9 +67,17 @@ def store_files_slow(links, names):
         download_file(url, name)
 
 def main( n = -1 ):
+    # Crear directorio data/raw si no existe
+    os.makedirs("data/raw", exist_ok=True)
+    
     links, titles = get_links(n)
-    store_files(links, titles)
+    
+    # Agregar ruta data/raw/ a cada título
+    titles_with_path = [os.path.join("data/raw", title) for title in titles]
+    
+    store_files(links, titles_with_path)
     print("Done")
 
-n = range(1, 41)
+# Descargar los primeros 100 libros
+n = range(1, 101)
 main( n )
