@@ -25,18 +25,19 @@ python3 -c "import nltk; nltk.download('stopwords'); nltk.download('punkt')"
 ## Estructura del Proyecto
 ```
 proyecto-sparkie/
-├── data/
-│   ├── raw/              # 100 libros del Proyecto Gutenberg (.txt)
-│   └── processed/        # Datos procesados (vocabulario, matrices)
-├── notebooks/            # Jupyter notebooks
-│   └── ejemplos_profesor/  # Notebooks del profesor
-├── src/                  # Código fuente Python
-│   ├── procesamiento.py  # Procesamiento de texto y vocabulario
-│   ├── similitud.py      # Matriz de similitudes con PySpark
-│   └── recomendacion.py  # Sistema de recomendación
-├── requirements.txt      # Dependencias del proyecto
-├── DescargarPySpark.txt  # Lista original de paquetes
-└── README.md
+├── PySpark-Abundis  			#Ejemplos del profesor
+├── data				#Archivos necesarios
+│   ├── processed			#Aquí se guardan los archivos procesados
+│   └── raw       		# 100 libros del Proyecto Gunterberg (.txt)
+├── notebooks	  		# Jupyter notebooks
+│   ├── PalabrasDescriptivas.ipynb 	 #Este notebook hace el paso 6
+│   ├── Recomendaciones.ipynb		 #Notebook paso 5 recomendar N libros
+│   ├── Similitud.ipynb			 #Crear matriz de similitud
+│   └── Vocabulario.ipynb 	# Aplica los filtros a los libros
+├── src
+├── DescargarPySpark.txt	# Lista original de paquetes
+├── README.md				
+└── requirements.txt		# Descargar dependencias
 ```
 
 ## Uso
@@ -60,10 +61,10 @@ python src/procesamiento.py
 
 - [x] Paso 1: Descargar 100 libros del Proyecto Gutenberg
 - [x] Paso 2: Eliminar comentarios de inicio y fin
-- [ ] Paso 3: Crear vocabulario (mayúsculas, limpieza, tokens, stopwords)
-- [ ] Paso 4: Crear matriz de similitudes en PySpark
-- [ ] Paso 5: Función de recomendación (N libros similares)
-- [ ] Paso 6: Función de palabras descriptivas (M palabras por documento)
+- [x] Paso 3: Crear vocabulario (mayúsculas, limpieza, tokens, stopwords)
+- [x] Paso 4: Crear matriz de similitudes en PySpark
+- [x] Paso 5: Función de recomendación (N libros similares)
+- [x] Paso 6: Función de palabras descriptivas (M palabras por documento)
 
 ## Flujo de Trabajo Git
 ```bash
